@@ -47,7 +47,7 @@ async def triage_input(state: State, config: RunnableConfig, store: BaseStore):
     model = config["configurable"].get("model", "gpt-4o")
     llm = ChatOpenAI(model=model, temperature=0)
     examples = await get_few_shot_examples(state["email"], store, config)
-    prompt_config = get_config(config)
+    prompt_config = await get_config(config)
     input_message = triage_prompt.format(
         email_thread=state["email"]["page_content"],
         author=state["email"]["from_email"],

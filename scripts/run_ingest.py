@@ -19,7 +19,7 @@ async def main(
     email: Optional[str] = None,
 ):
     if email is None:
-        email_address = get_config({"configurable": {}})["email"]
+        email_address = (await get_config({"configurable": {}}))["email"]
     else:
         email_address = email
     if url is None:
